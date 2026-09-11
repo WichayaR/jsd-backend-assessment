@@ -1,0 +1,62 @@
+### Base URL Configuration
+@baseUrl = http://localhost:3000
+
+### 0. Health Check
+GET {{baseUrl}}/
+
+### 1. GET All Products
+GET {{baseUrl}}/products
+
+### 2. GET Products with Search Query
+GET {{baseUrl}}/products?search=keyboard
+
+### 3. GET Products with Sort Query (Price Descending)
+GET {{baseUrl}}/products?sortBy=price&order=desc
+
+### 4. GET Single Product by ID (Valid)
+GET {{baseUrl}}/products/1710000001
+
+### 5. GET Single Product by ID (Not Found -> 404)
+GET {{baseUrl}}/products/non-existing-id
+
+### 6. POST Create New Product (Success -> 201)
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "Wireless Noise Cancelling Headphones",
+  "price": 3590,
+  "quantity": 2
+}
+
+### 7. POST Create Product Validation Error (Missing Price -> 400)
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "Headphone Case"
+}
+
+### 8. PUT Update Product by ID (Success -> 200)
+PUT {{baseUrl}}/products/1710000001
+Content-Type: application/json
+
+{
+  "name": "Wireless Mechanical Keyboard RGB",
+  "price": 2790,
+  "quantity": 10
+}
+
+### 9. PUT Update Product Not Found (404)
+PUT {{baseUrl}}/products/999999999
+Content-Type: application/json
+
+{
+  "name": "Ghost Item"
+}
+
+### 10. DELETE Product by ID (Success -> 200)
+DELETE {{baseUrl}}/products/1710000002
+
+### 11. DELETE Product Not Found (404)
+DELETE {{baseUrl}}/products/999999999
